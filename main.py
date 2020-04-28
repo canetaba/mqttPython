@@ -7,6 +7,7 @@ import paho.mqtt.client as mqtt
 import parameters as param
 import json as json
 import constants as const
+import time
 
 
 def mqtt_connection():
@@ -23,7 +24,8 @@ def mqtt_subscribe():
     # Publish in a MQTT topic
     client.subscribe(param.TOPIC_SUB,
                      param.QOS_SUB,
-                     param.RETAIN)
+                     param.RETAIN,
+                     param.QOS_SUB)
     print("Subscribing at mqtt topic")
 
 
@@ -56,16 +58,17 @@ def mqtt_disconnect():
 
 # Main
 if __name__ == "__main__":
-    message = const.MESSAGE
+    message = const.TEXT_MESSAGE
     client = mqtt.Client(param.CLIENT_ID)
     print("Create MQTT client")
     mqtt_connection()
     mqtt_subscribe()
     # Send a lot of messages
     for i in range(const.MESSAGES_NUMBER):
-        data = increase_time(message, i)
-        data = to_string(data)
+        #data = increase_time(message, i)
+        data = to_string(message)
         mqtt_publish(data)
+        time.sleep(const.SLEEP_TIME)
     print("All messages were sending")
     mqtt_unsubscribe()
     print("Unsubscribe topic:", param.TOPIC_SUB)

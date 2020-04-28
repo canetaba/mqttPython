@@ -17,14 +17,23 @@ KEEP_ALIVE = 60
 BIND_ADDRESS = ""
 
 # Publishing messages
-TOPIC_PUB = "consola/555/audioin"
+# Computador: local Cote
+# audio = consola/COTEUBUNTU/audioin
+# mensajes = "consola/5/COTEUBUNTU/mensajes"
+
+# Consola: 555
+# audio = consola/555/audioin
+# mensajes = "consola/5/555/mensajes"
+TOPIC_PUB = "consola/5/555/mensajes"
 PAYLOAD = None
 QOS_SUB = 2
 RETAIN = "False"
 PROPERTIES=None
 
 # Subscribe topic
-TOPIC_SUB = "consola/555/audioin"
+# audio = consola/COTEUBUNTU/audioin
+# mensajes = "consola/5/COTEUBUNTU/mensajes"
+TOPIC_SUB = "consola/5/555/mensajes"
 QOS_PUB = 2
 
 
